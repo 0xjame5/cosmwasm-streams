@@ -11,10 +11,10 @@ crate-type = ["cdylib"]
 [dependencies]
 prost = { version = "0.10.1" }
 prost-types = "0.10.1"
-substreams = "0.0.11"
+substreams = "0.0.12"
 hex = "0.4.3"
 num-bigint = "0.4"
-cosmrs = {features = ["cosmwasm"], version = "0.7.0"}
+# cosmrs = {features = ["cosmwasm"], version = "0.7.0"}
 
 
 [build-dependencies]
