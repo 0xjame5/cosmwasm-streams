@@ -52,58 +52,6 @@ fn map_hello_world(block: pb::cosmos::Block) -> Result<pb::cosmos::Header, subst
     //         }
     // }
 
-    //     // Tx::from_bytes(tx_result.tx.as_bytes());
-
-    //     if let Some(x) = tx_result.tx {
-    //         if let Some(tx_body) = x.body {
-    //             for msg in tx_body.messages {
-    //                 log::println(format!("Tx Dataobject {:?}", msg.type_url));
-    //                 if msg.type_url == "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward" {
-    //                     log::println(format!("Tx Dataobject {:?}", msg));
-                        
-    //                     MsgWithdrawDelegatorReward::try_from(msg);
-                        
-    //                     // match ProtoMsgWithdraw::try_from(msg) {
-    //                     //     Ok(msg_inst_contract) => {
-                                
-    //                     //         msg_inst_contract;
-    //                     //         // return msg_inst_contract.index_message(registry, events);
-    //                     //     }
-    //                     //     Err(e) => {
-    //                     //         // error!(
-    //                     //         //     "error parsing MsgInstantiateContract, events: {:?}",
-    //                     //         //     events
-    //                     //         // );
-    //                     //         // return Err(anyhow!(e));
-    //                     //     }
-    //                     // }
-    //                     // match ProtoMsgWithdraw::from_any(msg) {}
-    //                     // MsgWithdrawDelegatorReward::try_from(msg);
-
-    //                     // match MsgInstantiateContract::try_from(proto_msg_instantiate_contract) {
-
-    //                     // } 
-
-    //                 }
-                                    
-    //             }
-    //         }
-
-    //         // log::println(format!("Tx Dataobject {:?}", x));
-    //     } 
-    //     // else {
-    //     //     log::println(format!("I'm tired and sad x"));
-    //     // }
-    //     // No events, RIP.
-    //     // if let Some(y) = tx_result.result { 
-    //     //     let our_events = y.events;
-    //     //     log::println(format!("Events:  {:?}", our_events));
-    //     //     log::println(format!("Event Size:  {:?}", our_events.len()));
-    //     // } 
-    //     // else {
-    //     //     log::println(format!("I'm tired and sad y"));
-    //     // }
-    // }
 
     let header: core::option::Option<pb::cosmos::Header> = block.header;
 
