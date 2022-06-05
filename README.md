@@ -30,10 +30,21 @@ Then build with `make && make install`
 Now that you have a build of firehose built with substream support, you'll want to download some cosmos testnet blocks locally so firehose can serve them to the substream:
 
 ```
+# Local directory for downloaded firehose blocks
 export BLOCKS_DIR="./cosmos-blocks"
+# Your firehose API token
 export FIREHOSE_API_TOKEN="1751e03cd2034d4b18f9365661875b49"
-firehose-cosmos tools download-from-firehose firehose--cosmoshub-4--testnet.grpc.datahub.figment.io:443  --common-first-streamable-block=9034670 9100000 9101000 $BLOCKS_DIR
-firehose-cosmos start firehose --common-first-streamable-block=9100000 --common-blockstream-addr= --common-blocks-store-url=$BLOCKS_DIR --substreams-enabled`
+# The firehose API GRPC endpoint for cosmos juno
+export COSMOS_GRPC_ENDPOINT="firehose--cosmoshub-4--testnet.grpc.datahub.figment.io:443"
+
+# Download blocks
+export START_BLOCK=9034670
+export END_BLOCK=9100000
+firehose-cosmos tools download-from-firehose $COSMOS_GRPC_ENDPOINT  --common-first-streamable-block=$START_BLOCK $END_BLOCK $BLOCKS_DIR
+
+# Serve blocks for substreams
+# Node that this bypasses everything but already downloaded blocks
+firehose-cosmos start firehose --common-first-streamable-block=$START_BLOCK --common-blockstream-addr= --common-blocks-store-url=$BLOCKS_DIR --substreams-enabled`
 ```
 
 ## Building substreams
@@ -42,17 +53,7 @@ As of 6/4/2022, substreams needs a custom build instead of the shipping releases
 
 `curl https://get.wasmer.io/ -sSfL | sh`
 
-Once wasmer is installed you can build the substreams binary from source and run it, pointed at the local firehose instance you configured above:
-
-`substreams run -p -e 127.0.0.1:9030 substream.yaml map_hello_world -s 9100300 -t +10`
-
-At this point, the `map_hello_world` entry point will be called with with firehose blocks starting at `9100300` (the cosmos hub testned in this example).
-
-
-# StreamingFast Substream Template
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-## Quick Start
+Once wasmer is installed you can build the substreams binary from source.
 
 ### Compilation
 
@@ -61,3 +62,10 @@ To build the cosmwasm substream reader in this example, run the script:
 ```
 ./build.sh
 ```
+ 
+## Running your substreams code
+ 
+`substreams run -p -e 127.0.0.1:9030 substream.yaml map_hello_world -s 9100300 -t +10`
+
+At this point, the `map_hello_world` entry point will be called with with firehose blocks starting at `9100300` (the cosmos hub testned in this example).
+
