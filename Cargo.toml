@@ -15,6 +15,8 @@ prost-types = "0.10.1"
 substreams= { git = "https://github.com/streamingfast/substreams", branch="develop" }
 hex = "0.4.3"
 num-bigint = "0.4"
+# cosmrs = {features = ["cosmwasm"], version = "0.7.0"}
+
 
 [build-dependencies]
 prost-build = "0.10.1"
