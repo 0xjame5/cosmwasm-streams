@@ -1,0 +1,27 @@
+specVersion: v0.1.0
+description: Your substream(s) description here
+
+modules:
+  - name: map_hello_world
+    kind: map
+    # startBlock: 5203967 # mainnet block
+    startBlock: 9034670 # testnet block
+    # code:
+    #   type: wasm/rust-v1
+    #   file: ./target/wasm32-unknown-unknown/release/substreams_cosmos.wasm
+    #   entrypoint: map_hello_world
+    inputs:
+      - source: sf.cosmos.type.v1.Block
+    output:
+      type: proto:sf.cosmos.type.v1.Header
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/substreams_cosmos.wasm
+package:
+  name: cosmos_hub
+  version: v0.0.1
+  url: https://github.com/streamingfast/substreams-playground
+  doc: |
+    Solana SPL Token Transfers stream
+    This streams out SPL token transfers to the nearest human being.

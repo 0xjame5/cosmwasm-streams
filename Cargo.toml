@@ -1,0 +1,25 @@
+[package]
+name = "substreams-cosmos"
+version = "0.1.0"
+description = "Substream cosmos demo project"
+edition = "2021"
+repository = "https://github.com/streamingfast/substreams-template"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.79"
+prost = { version = "0.10.1" }
+prost-types = "0.10.1"
+substreams= { git = "https://github.com/streamingfast/substreams", branch="develop" }
+hex = "0.4.3"
+num-bigint = "0.4"
+
+[build-dependencies]
+prost-build = "0.10.1"
+
+[profile.release]
+lto = true
+opt-level = 's'
+strip = "debuginfo"
